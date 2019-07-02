@@ -6,5 +6,5 @@ GIC is compiler
   which doesn't use eny system call's at all.
   The main objective is to make a interpreter which is fast in every mean possible
   while being flexible.
-  GIC will provide support for cross-platform aplications.
+  GIC will provide support for cross-platform applications.
   Pioneer the original bro! :D   
