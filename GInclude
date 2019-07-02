@@ -1,0 +1,3 @@
+%include 'CORE/BasicLib.asm'
+%include 'CORE/SyntaxMapper.asm'
+%include 'CORE/Functions.asm'
