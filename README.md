@@ -2,9 +2,14 @@
 GIC is compiler
 
   02.Jul.19.23:32.
-  GIC is a interpreter type kernel,
-  which doesn't use eny system call's at all.
-  The main objective is to make a interpreter which is fast in every mean possible
-  while being flexible.
+  GIC is an interpreter type kernel,
+  
+  which doesn't use any system call at all.
+  
+  The main objective is to make an interpreter, 
+  
+  which is fast in every way possible while being flexible.
+  
   GIC will provide support for cross-platform applications.
-  Pioneer the original bro! :D   
+  
+  # Pioneer the original bro! :D   
