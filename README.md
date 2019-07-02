@@ -7,4 +7,4 @@ GIC is compiler
   The main objective is to make a interpreter which is fast in every mean possible
   while being flexible.
   GIC will provide support for cross-platforming aplications.
-  GIC will make your'e life yeasy :D   .
+  Pioneer the original bro! :D   
