@@ -23,6 +23,27 @@ returnCycle:
       je _div
       cmp ecx, '=='
       je _if
+      cmp ecx, '/\'
+      je _hypotenuse
+      cmp ecx, 'sin'
+      je _sin
+      cmp ecx, 'cos'
+      je _cos
+      cmp ecx, 'tan'
+      je _tan
+      cmp ecx, 'asin'
+      je _asin
+      cmp ecx, 'acos'
+      je _acos
+      cmp ecx, 'atan'
+      je _atan
+      cmp ecx, '@'
+      je _atan2
+      cmp ecx, '2deg'
+      je _toDeg
+      cmp ecx, '2rad'
+      je _toRad
+
 
 
 

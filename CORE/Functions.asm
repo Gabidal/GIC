@@ -1,6 +1,8 @@
 [section .data]
   save dd 0
   original dd 0
+  hypo times 256 dq 0
+  deg dw 57.2957795
 [section .code]
 
 _add:
@@ -99,4 +101,116 @@ _setHeap:
 jmp endCycle
 
 _createHeap:
+  jmp endCycle
+
+_hypotenuse:
+  push eax
+  push ebx
+  fld dword [esp+4]
+  fmul st0, st0
+  fld dword [esp]
+  fmul st0, st0
+  faddp
+  fsqrt
+  fstp dword [esp+4]
+  pop ebx
+  pop eax
+jmp endCycle
+
+_sin:
+  push ebx
+  fld dword [esp]
+  fsin
+  fstp dword [esp]
+  pop eax
+jmp endCycle
+
+_cos:
+  push ebx
+  fld dword [esp]
+  fcos
+  fstp dword [esp]
+  pop eax
+jmp endCycle
+
+_tan:
+  push ebx
+  fld dword [esp]
+  ftan
+  fstp dword [esp]
+  pop eax
+jmp endCycle
+
+_asin:
+  push ebx
+  fld  dword [esp]
+  fmul st0, st0
+  fld  st0
+  fld1
+  fsubrp st1, st0
+  fdivp st1, st0
+  fsqrt
+  fld1
+  fpatan
+  fstp dword [esp]
+  pop eax
+jmp endCycle
+
+_acos:
+  push ebx
+  fld  dword [esp]
+  fmul st0, st0
+  fld  st0
+  fld1
+  fsubrp st1, st0
+  fxch st1
+  fdivp st1, st0
+  fsqrt
+  fld1
+  fpatan
+  fstp dword [esp]
+  pop eax
+jmp endCycle
+
+_atan:
+  push ebx
+  fld dword [esp]
+  fld1
+  fpatan
+  fstp dword [esp]
+  pop eax
+jmp endCycle
+
+_atan2:
+  push eax        ;x
+  push ebx        ;y
+  fld dword [esp]
+  fld dword [esp+4]
+  fpatan
+  fstp dword [esp+4]
+  pop ebx
+  pop eax
+jmp endCycle
+
+_toDeg:
+  mov eax, ebx
+  push eax
+  fld dword [deg]
+  fld dword [esp]
+  fmulp
+  fstp dword [esp]
+  pop ebx
+  pop eax
+jmp endCycle
+
+_toRad:
+  mov eax, ebx
+  push eax
+  fld dword [deg]
+  fld dword [esp]
+  fdivp
+  fstp dword [esp]
+  pop ebx
+  pop eax
+jmp endCycle
   

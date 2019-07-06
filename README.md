@@ -1,2 +1,0 @@
-# GIC
-GIC is compiler
