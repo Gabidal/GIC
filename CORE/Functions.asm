@@ -26,6 +26,11 @@ _if:
   je _true
 jmp _false
 
+_notIf:
+  cmp eax, ebx
+  jne _true
+  jmp _false
+
 _true:
   call getNextLayer
 jmp QuickGIC
@@ -102,6 +107,13 @@ jmp endCycle
 
 _createHeap:
   jmp endCycle
+
+_jmp:
+  mov eax, ebx
+  mov ebx, 20
+  mul ebx
+  add ebp, eax
+jmp endCycle
 
 _hypotenuse:
   push eax

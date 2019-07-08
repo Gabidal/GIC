@@ -23,6 +23,10 @@ returnCycle:
       je _div
       cmp ecx, '=='
       je _if
+      cmp ecx, '!='
+      je _notIf
+      cmp ecx, 'jmp'
+      je _jmp
       cmp ecx, '/\'
       je _hypotenuse
       cmp ecx, 'sin'
@@ -37,7 +41,7 @@ returnCycle:
       je _acos
       cmp ecx, 'atan'
       je _atan
-      cmp ecx, '@'
+      cmp ecx, 'atn2'
       je _atan2
       cmp ecx, '2deg'
       je _toDeg
