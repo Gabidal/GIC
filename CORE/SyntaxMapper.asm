@@ -47,6 +47,18 @@ returnCycle:
       je _toDeg
       cmp ecx, '2rad'
       je _toRad
+      cmp ecx, 'nand'
+      je _nand
+      cmp ecx, 'and'
+      je _and
+      cmp ecx, 'xor'
+      je _xor
+      cmp ecx, 'or'
+      je _or
+      cmp ecx, 'nor'
+      je _nor
+      cmp ecx, 'nxor'
+      je _nxor
 
 
 

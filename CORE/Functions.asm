@@ -226,3 +226,29 @@ _toRad:
   pop eax
 jmp endCycle
   
+_nand:
+  and eax, ebx
+  not eax
+jmp endCycle
+
+_and:
+  and eax, ebx
+jmp endCycle
+
+_xor:
+  xor eax, ebx
+jmp endCycle
+
+_nor:
+  or eax, ebx
+  not eax
+jmp endCycle
+
+_nxor:
+  xor eax, ebx
+  not eax
+jmp endCycle
+
+_or:
+  or eax, ebx
+jmp endCycle
