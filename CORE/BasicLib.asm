@@ -13,16 +13,15 @@ addTGic:
 ret
 
 getNextLayer:
-  pop edx   
 
-  mov eax, [ebp-4]
-  mov ebx, [ebp-8]
-  mov ecx, [ebp-12]
-  mov edi, [ebp-16]
-  mov esi, [ebp-20]
-  sub ebp, 20
+  mov edx, [ebp-4]
+  mov eax, [ebp-8]
+  mov ebx, [ebp-12]
+  mov ecx, [ebp-16]
+  mov edi, [ebp-20]
+  mov esi, [ebp-24]
+  sub ebp, 24
 
-  push edx
 ret
 
 %macro func 5
@@ -32,6 +31,15 @@ ret
   mov edi, %4
   mov esi, %5
   call addTGic
+%endmacro
+
+%macro sec 1
+  mov edx, %1
+  push edx
+%endmacro
+
+%macro endSec 0
+%%bananas:
 %endmacro
 
 clearStack:
