@@ -5,20 +5,40 @@
   deg dw 57.2957795
 [section .code]
 
+_set:
+  mov [edi], ebx
+jmp endCycle
+
 _add:
+  push eax
+  mov eax, dword [edi]
   add eax, ebx
+  mov [edi], eax
+  pop eax
 jmp endCycle
 
 _sub:
+  push eax
+  mov eax, dword [edi]
   sub eax, ebx
+  mov [edi], eax
+  pop eax
 jmp endCycle
 
 _mul:
+  push eax
+  mov eax, dword [edi]
   mul ebx
+  mov [edi], eax
+  pop eax
 jmp endCycle
 
 _div:
+  push eax
+  mov eax, dword [edi]
   div ebx
+  mov [edi], eax
+  pop eax
 jmp endCycle
 
 _if:
@@ -54,66 +74,31 @@ _for:
   call getNextLayer
 jmp QuickGIC
 
-
-_globalize:
-  mov variables[edi-1], eax
-  mov edi, 0
-jmp endCycle
-
 _external:
-  mov ebx, variables[edi+1]
+  add eax, 1
+  add esi, eax
+  mov ebx, [esi]
 jmp AfterExtern
 
 _saveExternal:
-  mov variables[edi+1], eax
-  mov edi, 0
-jmp endCycle
-
-_heap:
-  cmp edi, 0
-  jl _getHeap
-  jg _setHeap
-  je _createHeap
-
-_getHeap:
-  mov [save], esi
-  mov [original], edi
-  mov esi, ebx
-  mov edi, 4096
-  mul edi
-  mov edi, eax
-  lea edi, mainHeap[edi]
-  mov eax, dword [edi+esi]
-  mov edi, dword [original]
-  mov esi, dword [save]
-jmp endCycle
-
-_setHeap:
-  mov [save], esi
-  mov [original], edi
-  mov esi, ebx
-  mov edi, 4096
-  mul edi
-  mov edi, eax
-  lea edi, mainHeap[edi]
+  add esi, eax
   push edi
-  mov edi, dword [original]
-  mov eax, dword variables[edi-1]
+  mov edi, [edi]
+  mov [esi+1], edi
   pop edi
-  mov [edi+esi], eax
-  mov edi, [original]
-  mov esi, [save]
+  mov eax, 0
 jmp endCycle
-
-_createHeap:
-  jmp endCycle
 
 _jmp:
+  push eax
   mov eax, ebx
   mov ebx, 20
   mul ebx
   add ebp, eax
+  pop eax
 jmp endCycle
+
+;_-_-_-_-_-_-_-_-;
 
 _hypotenuse:
   push eax

@@ -1,4 +1,3 @@
-  
 %include 'GInclude'
 
 [section .text]
@@ -7,21 +6,31 @@ _start:
 mov ebp, esp
 
 ;_-_-_-_-_-_-_-_-_-_-_- 
-  sec 'mat2'
-  func 2.0, '/\', 5.0, 0, 1
-  sec 'math'
-  func 3, '+', 3, 0, 0
+    var saltProsent, 23
+    var sugarProsent, 32
+
+    run salt, 5
+    run sugar, 10
+
+    func salt, 1
+      sec 'math'
+      set saltProsent,'=', 0, -1
+
+    func sugar, 1
+      sec 'math'
+      set sugarProsent,'=', 0, -1
+
 ;_-_-_-_-_-_-_-_-_-_-_-
-call returnCycle   
+call returnCycle
 endGIC:
+
+mov eax, dword [saltProsent]
+mov ebx, dword [sugarProsent]
 
 
 call clearStack
 
-mov esp, ebp
+mov ebp, esp
 mov eax, 1
 mov ebx, 0
 int 80h
-
-[section .bss]
-    mainHeap resb 1073741824

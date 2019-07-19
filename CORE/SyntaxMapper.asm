@@ -1,7 +1,5 @@
 [section .data]
-  sect dd 0
   savedx dd 0
-  variables times 1024 dw 0
 [section .code]
 
 returnCycle:
@@ -9,12 +7,10 @@ returnCycle:
   mov [savedx], edx
 
   GIC:
-    call getNextLayer 
+    call getNextLayer
 
     QuickGIC:
-      cmp ecx, '[]'
-      je _heap
-      cmp edi, -1
+      cmp eax, -1
       jle _external
 
     AfterExtern:
@@ -28,12 +24,10 @@ returnCycle:
       je _bitwise
 
     endCycle:
-      cmp edi, -1
+      cmp eax, -1
       jle _saveExternal
-      cmp edi, 0
-      jg _globalize
-      cmp esi, 0 
-      jne GIC      
+      cmp ecx, 0
+      jne GIC
 
 mov edx, dword [savedx]
 push edx

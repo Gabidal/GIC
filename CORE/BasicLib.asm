@@ -24,13 +24,29 @@ getNextLayer:
 
 ret
 
-%macro func 5
-  mov eax, %1
+%macro func 2
+    jmp %1end
+    [section .data]
+    %1 times %2 dd 0
+    [section .text]
+    %1end:
+    lea esi, [%1]
+%endmacro
+
+%macro set 4
+  lea edi, [%1]
   mov ecx, %2
   mov ebx, %3
-  mov edi, %4
-  mov esi, %5
+  mov eax, %4
   call addTGic
+%endmacro
+
+%macro var 2
+  jmp %1end
+  [section .data]
+  %1 dd %2
+  [section .text]
+  %1end:
 %endmacro
 
 %macro sec 1
@@ -38,8 +54,9 @@ ret
   push edx
 %endmacro
 
-%macro endSec 0
-%%bananas:
+%macro run 2
+    mov eax, %2
+    mov [%1], eax
 %endmacro
 
 clearStack:

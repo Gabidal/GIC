@@ -1,4 +1,6 @@
 _math:
+  cmp ecx, '='
+  je _set
   cmp ecx, '+'
   je _add         
   cmp ecx, '-'
